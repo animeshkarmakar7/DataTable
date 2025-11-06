@@ -70,6 +70,8 @@ export default function ArtworkTable({
       <CustomPagination
         currentPage={page}
         totalPages={totalPages}
+        totalRecords={totalRecords}
+        rowsPerPage={rowsPerPage}
         onPageChange={onPageChange}
         disabled={loading}
       />
