@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/api/api.ts","./src/components/loader.tsx","./src/components/datatable/artworktable.tsx","./src/components/overlay/customselectoverlay.tsx","./src/context/selectioncontext.tsx","./src/hooks/useselection.ts","./src/pages/artworkspage.tsx","./src/pages/pagination.tsx","./src/types/types.ts"],"version":"5.9.3"}

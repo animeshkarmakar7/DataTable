@@ -14,7 +14,7 @@ export default function CustomSelectOverlay({ rows }: Props) {
   const panelRef = useRef<OverlayPanel>(null);
   const [count, setCount] = useState<number | null>(null);
 
-  const { selectedIds, setSelectedIds, setBulkRemaining, bulkRemaining, clearAll } =
+  const { selectedIds, setSelectedIds, setBulkRemaining, clearAll } =
     useSelection();
 
   function open(e: React.MouseEvent<HTMLButtonElement>) {
