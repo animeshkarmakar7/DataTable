@@ -1,0 +1,7 @@
+.table-wrapper {
+  padding: 1rem;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  white-space: nowrap;
+}
