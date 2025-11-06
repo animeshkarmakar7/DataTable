@@ -1,7 +1,8 @@
 import React from 'react';
-import { DataTable, DataTablePageEvent } from 'primereact/datatable';
+import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Artwork } from '../../types/types';
+import CustomPagination from '../../pages/pagination';
 import '../../components/DataTable/ArtworkTable.css';
 
 type Props = {
@@ -42,10 +43,7 @@ export default function ArtworkTable({
     setSelectedIds(next);
   }
 
-  function onPage(e: DataTablePageEvent) {
-    const newPage = Math.floor(e.first / e.rows) + 1;
-    onPageChange(newPage);
-  }
+  const totalPages = Math.ceil(totalRecords / rowsPerPage);
 
   return (
     <div className="table-wrapper">
@@ -53,12 +51,6 @@ export default function ArtworkTable({
         value={rows}
         dataKey={dataKey}
         loading={loading}
-        paginator
-        lazy
-        totalRecords={totalRecords}
-        first={(page - 1) * rowsPerPage}
-        rows={rowsPerPage}
-        onPage={onPage}
         selectionMode="checkbox"
         selection={selectedRows}
         onSelectionChange={handleSelectionChange}
@@ -74,6 +66,13 @@ export default function ArtworkTable({
         <Column field="date_start" header="START DATE" />
         <Column field="date_end" header="END DATE" />
       </DataTable>
+      
+      <CustomPagination
+        currentPage={page}
+        totalPages={totalPages}
+        onPageChange={onPageChange}
+        disabled={loading}
+      />
     </div>
   );
 }

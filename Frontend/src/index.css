@@ -27,12 +27,3 @@ body {
   margin: 0 auto;
   padding: 1rem;
 }
-
-.p-datatable {
-  max-width: var(--page-max);
-  margin: 0 auto 2rem auto;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid #e2e8f0;
-}
