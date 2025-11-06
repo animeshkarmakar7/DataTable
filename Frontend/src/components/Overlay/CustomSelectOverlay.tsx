@@ -23,11 +23,15 @@ export default function CustomSelectOverlay({ rows }: Props) {
 
   function apply() {
     const n = typeof count === 'number' ? Math.max(0, Math.floor(count)) : 0;
-    if (n === 0) return;
+    if (n === 0) {
+      alert('Please enter a number greater than 0');
+      return;
+    }
 
     let remaining = n;
     const next = new Set<number>(selectedIds);
 
+    // Select from current page first
     for (const r of rows) {
       if (remaining === 0) break;
       if (!next.has(r.id)) {
@@ -37,9 +41,15 @@ export default function CustomSelectOverlay({ rows }: Props) {
     }
 
     setSelectedIds(next);
-    setBulkRemaining(bulkRemaining + remaining);
+    setBulkRemaining(remaining);
     setCount(null);
     panelRef.current?.hide();
+
+    // Show success message
+    const selected = n - remaining;
+    if (selected > 0) {
+      alert(`Selected ${selected} row${selected !== 1 ? 's' : ''} from current page.${remaining > 0 ? ` ${remaining} more will be selected from next pages.` : ''}`);
+    }
   }
 
   function clearSelection() {
@@ -51,22 +61,59 @@ export default function CustomSelectOverlay({ rows }: Props) {
   return (
     <>
       <div className="overlay-actions">
-        <button className="plain-button" onClick={open}>Custom Select</button>
+        <button className="plain-button" onClick={open}>
+          <i className="pi pi-check-square" style={{ marginRight: '0.5rem' }}></i>
+          Custom Select
+        </button>
       </div>
 
       <OverlayPanel ref={panelRef} dismissable closeOnEscape>
         <div className="overlay-content">
+          <div className="overlay-header">
+            <h3>Select Multiple Rows</h3>
+          </div>
+          
           <div className="field">
-            <label>Number of rows to select</label>
-            <InputNumber value={count} onValueChange={(e: { value: any; }) => setCount(e.value ?? null)} min={0} />
+            <label htmlFor="row-count">Number of rows to select</label>
+            <InputNumber 
+              id="row-count"
+              value={count} 
+              onValueChange={(e) => setCount(e.value ?? null)} 
+              min={0} 
+              max={9999}
+              placeholder="Enter number"
+              showButtons
+              buttonLayout="horizontal"
+              step={1}
+              decrementButtonClassName="p-button-secondary"
+              incrementButtonClassName="p-button-secondary"
+              incrementButtonIcon="pi pi-plus"
+              decrementButtonIcon="pi pi-minus"
+            />
           </div>
+          
           <div className="buttons">
-            <Button label="Apply" onClick={apply} />
-            <Button label="Clear All" onClick={clearSelection} severity="secondary" outlined />
+            <Button 
+              label="Apply" 
+              icon="pi pi-check"
+              onClick={apply} 
+              disabled={!count || count <= 0}
+            />
+            <Button 
+              label="Clear All" 
+              icon="pi pi-times"
+              onClick={clearSelection} 
+              severity="secondary" 
+              outlined 
+            />
           </div>
-          <p className="hint">
-            If the number exceeds the visible rows, remaining selections will be applied automatically on next pages as they load. No extra pages are fetched in advance.
-          </p>
+          
+          <div className="hint-box">
+            <i className="pi pi-info-circle"></i>
+            <p className="hint">
+              If the number exceeds visible rows, remaining selections will be applied automatically as you navigate to next pages. No extra pages are fetched in advance.
+            </p>
+          </div>
         </div>
       </OverlayPanel>
     </>
