@@ -1,10 +1,10 @@
 import React from 'react';
-import { fetchArtworks } from '@api/artworksApi';
-import { useSelection } from '@context/SelectionContext';
-import ArtworkTable from '@components/DataTable/ArtworkTable';
-import CustomSelectOverlay from '@components/Overlay/CustomSelectOverlay';
-import { usePersistentSelection } from '@hooks/usePersistentSelection';
-import { Artwork } from '@types/types';
+import { fetchArtworks } from '../api/api';
+import { useSelection } from '../context/SelectionContext';
+import ArtworkTable from '../components/DataTable/ArtWorkTable';
+import CustomSelectOverlay from '../components/Overlay/CustomSelectOverlay';
+import { usePersistentSelection } from '../hooks/useSelection';
+import { Artwork } from '../types/types';
 
 export default function ArtworksPage() {
   const [page, setPage] = React.useState(1);
@@ -57,7 +57,7 @@ export default function ArtworksPage() {
         loading={loading}
         onPageChange={setPage}
         selectedIds={selectedIds}
-        setSelectedIds={(s: Iterable<unknown> | null | undefined) => setSelectedIds(new Set(s))}
+        setSelectedIds={setSelectedIds}
       />
     </div>
   );

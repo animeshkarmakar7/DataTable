@@ -2,8 +2,8 @@ import React, { useRef, useState } from 'react';
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { Button } from 'primereact/button';
 import { InputNumber } from 'primereact/inputnumber';
-import { Artwork } from '@types/types';
-import { useSelection } from '@context/SelectionContext';
+import { Artwork } from '../../types/types';
+import { useSelection } from '../../context/SelectionContext';
 import './CustomSelectOverlay.css';
 
 type Props = {

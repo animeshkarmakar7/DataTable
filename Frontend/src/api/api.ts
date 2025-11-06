@@ -1,4 +1,4 @@
-import { Artwork, ApiResponse } from '@types/types';
+import  {Artwork, ApiResponse } from '../types/types';
 
 const BASE_URL = 'https://api.artic.edu/api/v1/artworks';
 

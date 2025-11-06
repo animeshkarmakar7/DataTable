@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { Artwork } from '@types/types';
-import { useSelection } from '@context/SelectionContext';
+import { Artwork } from '../types/types';
+import { useSelection } from '../context/SelectionContext';
 
 export function usePersistentSelection(rows: Artwork[]) {
   const { selectedIds, setSelectedIds, bulkRemaining, setBulkRemaining } =

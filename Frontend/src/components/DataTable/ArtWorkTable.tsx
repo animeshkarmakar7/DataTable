@@ -1,8 +1,8 @@
 import React from 'react';
 import { DataTable, DataTablePageEvent } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { Artwork } from '@types/types';
-import './ArtworkTable.css';
+import { Artwork } from '../../types/types';
+import '../../components/DataTable/ArtworkTable.css';
 
 type Props = {
   rows: Artwork[];
